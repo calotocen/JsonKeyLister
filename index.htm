@@ -29,6 +29,19 @@
                         }
                         throw e;
                     }
+
+                    const paths = [];
+                    do {
+                        const { path, data } = stack.pop();
+                        paths.push(path !== '' ? path : '/');
+
+                        if (typeof data === 'object' && data !== null) {
+                            stack.push(...Object.keys(data).map(key => stack.push({
+                                path: `${path}/${key}`,
+                                data: data[key],
+                            })));
+                        }
+                    } while (stack.length > 0);
                 });
         });
     </script>
