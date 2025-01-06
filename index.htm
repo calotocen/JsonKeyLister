@@ -42,6 +42,10 @@
                             })));
                         }
                     } while (stack.length > 0);
+
+                    navigator.clipboard.writeText(paths
+                        .sort()
+                        .join("\n"));
                 });
         });
     </script>
