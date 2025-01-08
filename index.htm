@@ -25,6 +25,12 @@
             }
         }
 
+        class View {
+            get previousText() {
+                return $('[data-id="text"]').data('previousText');
+            }
+        }
+
         $(function () {
             $('[data-id="summarize"]')
                 .click(function () {
