@@ -32,6 +32,9 @@
             set previousText(text) {
                 $('[data-id="text"]').data({ previousText: text });
             }
+            get text() {
+                return $('[data-id="text"]')[0].value;
+            }
         }
 
         $(function () {
