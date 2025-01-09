@@ -29,6 +29,9 @@
             get previousText() {
                 return $('[data-id="text"]').data('previousText');
             }
+            set previousText(text) {
+                $('[data-id="text"]').data({ previousText: text });
+            }
         }
 
         $(function () {
