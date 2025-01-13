@@ -37,6 +37,27 @@
             }
         }
 
+        class TextView {
+            constructor() {
+                this.changed = false;
+
+                const myself = this;
+                this.$element.keyup(function () {
+                    const previousValue = $(this).data('previousValue') ?? '';
+                    myself.changed = (previousValue !== this.value);
+                    $(this).data({ previousValue: this.value });
+                });
+            }
+
+            get $element() {
+                return $('[data-id="text"]');
+            }
+            get value() {
+                return this.$element[0].value;
+            }
+        }
+
+
         $(function () {
             const model = new Model();
             const view = new View(model);
