@@ -77,39 +77,7 @@
                     view.previousText = view.text;
                     console.log('end')
                 });
-            $('[data-id="summarize"]')
-                .click(function () {
-                    console.log('kitayo')
-                    const stack = [];
-                    try {
-                        stack.push({
-                            path: '',
-                            data: JSON.parse($('[data-id="text"]')[0].value),
-                        })
-                    } catch (e) {
-                        if (e instanceof SyntaxError) {
-                            console.log(e);
-                            return;
-                        }
-                        throw e;
-                    }
 
-                    const paths = [];
-                    do {
-                        const { path, data } = stack.pop();
-                        paths.push(path !== '' ? path : '/');
-
-                        if (typeof data === 'object' && data !== null) {
-                            stack.push(...Object.keys(data).map(key => stack.push({
-                                path: `${path}/${key}`,
-                                data: data[key],
-                            })));
-                        }
-                    } while (stack.length > 0);
-
-                    navigator.clipboard.writeText(paths
-                        .sort()
-                        .join("\n"));
                 });
         });
     </script>
@@ -118,10 +86,6 @@
 <body>
     <div class="container vh-100">
         <div class="row h-100">
-            <div class="col">
-                <button data-id="summarize">Summarize</button>
-                <textarea class="h-100 w-100" data-id="text"></textarea>
-            </div>
             <div class="col">
                 <div class="flex-fill overflow-auto" data-id="list">
                 </div>
