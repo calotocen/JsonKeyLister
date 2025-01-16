@@ -19,6 +19,12 @@
                 this.ancestors ??= [];
                 this.children ??= [];
             }
+
+            get type() {
+                return typeof this.value === 'object' && this.value !== null && this.value.constructor.name === 'Array'
+                    ? 'array'
+                    : typeof this.value;
+            }
         }
 
         class Model {
