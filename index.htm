@@ -25,6 +25,13 @@
                     ? 'array'
                     : typeof this.value;
             }
+
+            get path() {
+                return [...this.ancestors, this]
+                    .map(({ name, ancestors }) => [JSON.stringify(name).slice(1, -1), ancestors])
+                    .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[${name}]` : `${path}/${name}`, '')
+                    .replace(/^\/\//, '/')
+            }
         }
 
         class Model {
