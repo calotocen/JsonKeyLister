@@ -32,6 +32,18 @@
                     .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[${name}]` : `${path}/${name}`, '')
                     .replace(/^\/\//, '/')
             }
+
+            get indexlessPath() {
+                return [...this.ancestors, this]
+                    .map(({ name, type, ancestors }) => {
+                        if (type === 'array') return `${name}[]`;
+                        if (ancestors.at(-1)?.type === 'array') return null;
+                        return name;
+                    })
+                    .filter(name => name !== null)
+                    .map(name => name.replaceAll('/', '\\/'))
+                    .join('/');
+            }
         }
 
         class Model {
