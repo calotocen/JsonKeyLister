@@ -35,14 +35,9 @@
 
             get indexlessPath() {
                 return [...this.ancestors, this]
-                    .map(({ name, type, ancestors }) => {
-                        if (type === 'array') return `${name}[]`;
-                        if (ancestors.at(-1)?.type === 'array') return null;
-                        return name;
-                    })
-                    .filter(name => name !== null)
-                    .map(name => name.replaceAll('/', '\\/'))
-                    .join('/');
+                    .map(({ name, ancestors }) => [JSON.stringify(name).slice(1, -1), ancestors])
+                    .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[]` : `${path}/${name}`, '')
+                    .replace(/^\/\//, '/')
             }
         }
 
