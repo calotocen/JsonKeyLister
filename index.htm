@@ -39,7 +39,7 @@
                     .replace(/^\/\//, '/')
             }
 
-            get indexlessPath() {
+            get schemaId() {
                 return [...this.ancestors, this]
                     .map(({ name, ancestors }) => [JSON.stringify(name).slice(1, -1), ancestors])
                     .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[]` : `${path}/${name}`, '')
