@@ -126,10 +126,12 @@
 </head>
 
 <body>
-    <div class="container vh-100">
-        <div class="row h-100">
-            <div class="col">
-                <div class="flex-fill overflow-auto" data-id="list">
+    <div class="container d-flex flex-column min-vh-100 gap-1">
+        <div class="d-flex flex-column flex-fill">
+            <div class="d-flex flex-column flex-fill gap-1">
+                <textarea class="flex-fill" data-id="text"></textarea>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary">Analyze</button>
                 </div>
             </div>
         </div>
