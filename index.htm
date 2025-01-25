@@ -67,17 +67,6 @@
             }
         }
 
-        class View {
-            get previousText() {
-                return $('[data-id="text"]').data('previousText');
-            }
-            set previousText(text) {
-                $('[data-id="text"]').data({ previousText: text });
-            }
-            get text() {
-                return $('[data-id="text"]')[0].value;
-            }
-        }
 
         class TextView {
             constructor() {
