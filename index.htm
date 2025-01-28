@@ -49,9 +49,6 @@
         }
 
         class Records extends Array {
-            get indexlessPaths() {
-                return [...new Set(this.map(record => record.indexlessPath))];
-            }
         }
 
         class Model {
