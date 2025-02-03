@@ -95,22 +95,6 @@
         $(function () {
             const model = new Model();
             const view = new View(model);
-            $('[data-id="text"]')
-                .keyup(function () {
-                    if (view.previousText === view.text) {
-                        return;
-                    }
-                    console.log('start')
-                    model.parseJson(this.value)
-                        .then(function (data) {
-                            console.log(data)
-                        },
-                        function () {
-                            console.log('ng')
-                        });
-                    view.previousText = view.text;
-                    console.log('end')
-                });
 
                 });
         });
