@@ -59,12 +59,31 @@
         class Model {
             parseJson(json) {
                 return new Promise((resolve, reject) => {
+                    let stack;
                     try {
-                        this.data = JSON.parse(json);
-                        resolve(this.data);
+                        stack = [new Record({ value: JSON.parse(json) })];
                     } catch (e) {
-                        reject(undefined);
+                        resolve(undefined);
+                        return;
                     }
+
+                    this.records = new Records;
+                    do {
+                        const record = stack.shift();
+
+                        if (['object', 'array'].includes(record.type) && record.value !== null) {
+                            record.children.push(...Object.keys(record.value).map(name => new Record({
+                                value: record.value[name],
+                                name: name,
+                                ancestors: record.ancestors.concat(record),
+                            })));
+                            stack.unshift(...record.children);
+                        }
+
+                        this.records.push(record);
+                    } while (stack.length > 0);
+
+                    resolve(this.records);
                 });
             }
         }
