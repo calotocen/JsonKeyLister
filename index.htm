@@ -117,6 +117,25 @@
         $(function () {
             const model = new Model();
             const view = new View(model);
+            view.text.$element
+                .keyup(async function () {
+                    console.log('start');
+                    if (!view.text.changed) return;
+                    console.log('parsing...')
+                    const records = await model.parseJson(view.text.value);
+                    console.log(records);
+                    if (records === undefined) return;
+                    console.log('end');
+
+                    $('[data-id="records"]').DataTable()
+                        .clear()
+                        .rows.add(records
+                            .map(record => [
+                                record.path,
+                                record.type,
+                                JSON.stringify(record.value).replace(/^"|"$/g, '')
+                            ]))
+                        .draw();
 
                 });
         });
