@@ -138,6 +138,20 @@
                         .draw();
 
                 });
+            $('[data-id="records"]').DataTable({
+                columnDefs: [
+                    {
+                        targets: 0, width: '40%', render: function (data) {
+                            // there are no space characters in the json keys, so the browser will not wrap them.
+                            // the following code forces word wrapping for json keys.
+                            return `<p style="word-wrap: break-word;">${data}</p>`
+                        }
+                    },
+                    { targets: 1, width: '5em' },
+                    { targets: 2, className: 'text-truncate' },
+                ],
+            });
+
         });
     </script>
 </head>
