@@ -129,29 +129,37 @@
             }
         }
 
-        class TextView {
-            constructor() {
-                this.changed = false;
+            }
+        class View {
+            constructor(model) {
+                this.textPane = class {
+                    expandTextPane() {
+                        const pane = $('[data-id="textPane"]');
+                        pane.css({ width: '50%' });
 
-                const myself = this;
-                this.$element.keyup(function () {
-                    const previousValue = $(this).data('previousValue') ?? '';
-                    myself.changed = (previousValue !== this.value);
-                    $(this).data({ previousValue: this.value });
-                });
+                    }
+                    collapseTextPane() {
+                        const pane = $('[data-id="textPane"]');
+                        pane.css({ width: 'auto' });
+                    }
+                    get textPaneExpanded() {
+                    }
+                }
+                this.records = new RecordsView($('[data-id="record"]'));
+                this.schema = new SchemaView($('[data-id="schema"]'));
             }
 
-            get $element() {
+            get $text() {
                 return $('[data-id="text"]');
             }
-            get value() {
-                return this.$element[0].value;
+            get text() {
+                return $('[data-id="text"]')[0].value;
             }
+
+
+
         }
 
-        class View {
-            constructor() {
-                this.text = new TextView;
             }
         }
 
