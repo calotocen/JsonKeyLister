@@ -253,16 +253,18 @@
 
 <body>
     <div class="container d-flex min-vh-100 gap-1 px-0 py-1">
-        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center m-0 px-2 py-1 gap-1" role="alert">
-            <div class="bi bi-exclamation-triangle-fill fs-5"></div>
-            <div class="flex-fill">The input text could not be parsed as JSON.</div>
-            <button type="button" class="btn-close position-static p-0" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <div class="d-flex flex-column flex-fill">
             <div class="d-flex flex-column flex-fill gap-1">
                 <textarea class="flex-fill" data-id="text"></textarea>
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-primary">Analyze</button>
+        <div class="position-relative d-flex flex-column overflow-hidden resize-horizontal border-end gap-1"
+             style="width: 50%; min-width: calc(2rem + 10px);" data-id="textPane">
+            <div style="display: none;">
+                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center m-0 px-2 py-1 gap-1">
+                    <div class="bi bi-exclamation-triangle-fill fs-5"></div>
+                    <div class="flex-fill">The input text could not be parsed as JSON.</div>
+                    <button type="button" class="btn-close position-static p-0" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         <div class="d-flex flex-column flex-fill" style="width: 50%;">
