@@ -253,11 +253,6 @@
 
 <body>
     <div class="container d-flex min-vh-100 gap-1 px-0 py-1">
-        <div class="d-flex flex-column flex-fill">
-            <div class="d-flex flex-column flex-fill gap-1">
-                <textarea class="flex-fill" data-id="text"></textarea>
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary">Analyze</button>
         <div class="position-relative d-flex flex-column overflow-hidden resize-horizontal border-end gap-1"
              style="width: 50%; min-width: calc(2rem + 10px);" data-id="textPane">
             <div style="display: none;">
@@ -267,6 +262,17 @@
                     <button type="button" class="btn-close position-static p-0" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
+            <textarea class="flex-fill" data-id="text" placeholder="Enter JSON" autofocus></textarea>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary">Analyze</button>
+            </div>
+            <div class="position-absolute d-flex align-items-start" style="top: 0px; right: 0px; padding: 5px;" data-collpse="no">
+                <button type="button" class="btn bi bi-caret-left fs-0 btn-hover-primary aspect-ratio-1x1 p-0"
+                        style="width: 4rem; line-height: 0px; display: none;"></button>
+                <button type="button" class="btn bi bi-caret-right btn-hover-primary aspect-ratio-1x1 p-0" style="width: 2rem; line-height: 0px;"
+                        data-collpse="inversion"></button>
+            </div>
+        </div>
         <div class="d-flex flex-column flex-fill" style="width: 50%;">
             <ul class="nav nav-tabs sticky-top bg-white">
                 <li class="nav-item">
