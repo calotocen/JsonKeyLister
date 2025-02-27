@@ -253,6 +253,9 @@
 
 <body>
     <div class="container d-flex min-vh-100 gap-1 px-0 py-1">
+        <!-- it seems that resizing is implemented by changing the width.
+           - for the above reason, resizing does not work well if width is specified by w-NN class.
+           -->
         <div class="position-relative d-flex flex-column overflow-hidden resize-horizontal border-end gap-1"
              style="width: 50%; min-width: calc(2rem + 10px);" data-id="textPane">
             <div style="display: none;">
