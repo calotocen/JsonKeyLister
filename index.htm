@@ -180,6 +180,10 @@
 
         class Controller {
             constructor(model, view) {
+                view.$text
+                    .on('input', async function () {
+                        const records = await model.parseJson(view.text);
+                    });
             }
         }
 
