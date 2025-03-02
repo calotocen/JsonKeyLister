@@ -183,6 +183,16 @@
                 view.$text
                     .on('input', async function () {
                         const records = await model.parseJson(view.text);
+
+                        $('[data-id="records"]').DataTable()
+                            .clear()
+                            .rows.add(records
+                                .map(record => [
+                                    record.path,
+                                    record.type,
+                                    JSON.stringify(record.value).replace(/^"|"$/g, '')
+                                ]))
+                            .draw();
                     });
             }
         }
