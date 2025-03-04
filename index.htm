@@ -183,6 +183,7 @@
                 view.$text
                     .on('input', async function () {
                         const records = await model.parseJson(view.text);
+                        if (records === undefined) return;
 
                         $('[data-id="records"]').DataTable()
                             .clear()
