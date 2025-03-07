@@ -133,6 +133,37 @@
             constructor($element, parameters = {}) {
                 this.$element = $element;
                 this.$table = $element
+                    .on('init.dt', function () {
+                        const $root = $(this).closest('div[id^=DataTables_Table_');
+
+                        // re-layout for top2
+                        $root
+                            .children(':first')
+                            .find('div[class="dt-search"]')
+                            .addClass('w-100')
+                            .append(
+                                $('<div>')
+                                    .addClass('position-relative')
+                                    .append(
+                                        $('<div>')
+                                            .addClass('input-group')
+                                            .append(
+                                                $('<span>')
+                                                    .addClass('input-group-text bi bi-search'),
+                                                $root.find('[type="search"]')
+                                                    .addClass('flex-fill')),
+                                        $('<button>')
+                                            .attr({
+                                                type: 'button',
+                                                'data-bs-toggle': 'button',
+                                                style: 'height: calc(100% - 6px); top: 50%; right: 3px; transform: translateY(-50%)',
+                                            })
+                                            .addClass('position-absolute aspect-ratio-1x1 border-0 p-0 btn btn-outline-primary font-monospace bi bi-regex')));
+
+                        // top1
+                        $root
+
+                    })
                     .DataTable({
                         columnDefs: [
                             {
