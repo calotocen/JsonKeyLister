@@ -256,69 +256,6 @@
         $(function () {
             const model = new Model();
             const view = new View(model);
-            view.text.$element
-                .keyup(async function () {
-                    console.log('start');
-                    if (!view.text.changed) return;
-                    console.log('parsing...')
-                    const records = await model.parseJson(view.text.value);
-                    console.log(records);
-                    if (records === undefined) return;
-                    console.log('end');
-
-                    $('[data-id="records"]').DataTable()
-                        .clear()
-                        .rows.add(records
-                            .map(record => [
-                                record.path,
-                                record.type,
-                                JSON.stringify(record.value).replace(/^"|"$/g, '')
-                            ]))
-                        .draw();
-                    $('[data-id="schema"]').DataTable()
-                        .clear()
-                        .rows.add(Object
-                            .values(Object.groupBy(records, record => record.schemaId))
-                            .map(groupedRecords => [
-                                groupedRecords[0].schemaId,
-                                groupedRecords[0].type,
-                                groupedRecords
-                                    .map(({ type, value }) => type === 'string' ? value : JSON.stringify(value))
-                                    .filter(value => value !== '')
-                                    .unique()
-                                    .sort()
-                                    .join(', '),
-                            ]))
-                        .draw();
-                });
-
-            $('[data-id="records"]').DataTable({
-                columnDefs: [
-                    {
-                        targets: 0, width: '40%', render: function (data) {
-                            // there are no space characters in the json keys, so the browser will not wrap them.
-                            // the following code forces word wrapping for json keys.
-                            return `<p style="word-wrap: break-word;">${data}</p>`
-                        }
-                    },
-                    { targets: 1, width: '5em' },
-                    { targets: 2, className: 'text-truncate' },
-                ],
-            });
-
-            $('[data-id="schema"]').DataTable({
-                columnDefs: [
-                    {
-                        targets: 0, width: '40%', render: function (data) {
-                            // there are no space characters in the json keys, so the browser will not wrap them.
-                            // the following code forces word wrapping for json keys.
-                            return `<p style="word-wrap: break-word;">${data}</p>`
-                        }
-                    },
-                    { targets: 1, width: '5em' },
-                    { targets: 2, className: 'text-truncate' },
-                ],
-            });
         });
     </script>
 </head>
