@@ -58,6 +58,34 @@
             <span class="fs-2">Json schema inference</span>
             <span class="ps-1" style="font-size: 0.8rem;">（使用方法については、<a href="#">こちら</a>をご覧ください）</span>
         </div>
+        <div class="container-lg d-flex flex-fill gap-1 py-1">
+            <div class="d-flex flex-fill gap-1">
+                <div class="d-flex" style="width: 50%;" data-id="Text.root">
+                    <div class="flex-fill" data-id="Text.container.expanded">
+                        <div class="position-relative d-flex h-100">
+                            <div class="d-flex flex-column flex-fill gap-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center lh-1">
+                                        <div><i class="bi bi-toggle-off fs-2 text-secondary pe-1" style="display: none;" data-id="Text.autoAnalysis.off"></i></div>
+                                        <div><i class="bi bi-toggle-on fs-2 text-primary pe-1" data-id="Text.autoAnalysis.on"></i></div>
+                                        Auto analysis
+                                    </div>
+                                    <button type="button" class="btn bi bi-caret-left btn-hover-primary aspect-ratio-1x1 p-0" style="width: 2rem; line-height: 0px;" data-id="Text.collapse"></button>
+                                </div>
+                                <textarea class="form-control flex-fill" placeholder="Enter JSON" autofocus data-id="Text.text"></textarea>
+                                <div class="d-flex">
+                                    <div class="flex-fill text-danger fw-bold" style="font-size: 0.8rem;" data-id="Text.message"></div>
+                                    <button class="btn btn-primary" data-id="Text.analyze">Analyze</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pe-1 border-end" style="display: none;" data-id="Text.container.collapsed">
+                        <button type="button" class="btn bi bi-caret-right btn-hover-primary aspect-ratio-1x1 p-0" style="width: 2rem; line-height: 0px;" data-id="Text.expand"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container pt-1 border-top">
         <h1 class="fs-4">概要</h1>
