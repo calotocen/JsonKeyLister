@@ -84,6 +84,29 @@
                         <button type="button" class="btn bi bi-caret-right btn-hover-primary aspect-ratio-1x1 p-0" style="width: 2rem; line-height: 0px;" data-id="Text.expand"></button>
                     </div>
                 </div>
+                <div class="d-flex flex-column flex-fill gap-1">
+                    <ul class="nav nav-tabs sticky-top bg-white">
+                        <li class="nav-item">
+                            <a class="nav-link active cursor-pointer">Schema</a>
+                        </li>
+                    <template data-id="DataTable">
+                        <div class="d-flex flex-column" data-id="${namespace}.root">
+                            <div class="position-relative">
+                                <div class="input-group">
+                                    <span class="input-group-text bi bi-search"></span>
+                                    <input type="search" class="form-control flex-fill" placeholder="Filter..." data-id="${namespace}.table.search" data-for="${namespace}.table">
+                                </div>
+                                <div class="d-flex position-absolute" style="height: calc(100% - 14px); top: 7px; right: 3px; gap: 1px;">
+                                    <button type="button" class="h-100 aspect-ratio-1x1 border-0 p-0 btn btn-outline-primary font-monospace" data-id="${namespace}.table.search.caseSensitive" data-bs-toggle="button">aA</button>
+                                    <button type="button" class="h-100 aspect-ratio-1x1 border-0 p-0 btn btn-outline-primary font-monospace bi bi-regex" data-id="${namespace}.table.search.regularExpression" data-bs-toggle="button"></button>
+                                </div>
+                            </div>
+                            <table class="display compact" data-id="${namespace}.table"></table>
+                        </div>
+                    </template>
+                    <div class="d-flex flex-column" data-id="Schema.root" data-template="DataTable" data-template-parameters="{&quot;namespace&quot;: &quot;Schema&quot;}">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
