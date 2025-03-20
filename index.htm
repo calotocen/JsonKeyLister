@@ -135,11 +135,6 @@
     <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
     <script>
-        if (Array.prototype.unique === undefined) {
-            Array.prototype.unique = function () {
-                return Array.from(new Set(this));
-            }
-        }
 
         class Record {
             constructor(parameters) {
@@ -325,6 +320,11 @@
             }
         }
 
+        $(function () {
+            Array.prototype.unique = function () {
+                return Array.from(new Set(this));
+            }
+        });
         $(function () {
             const model = new Model();
             const view = new View(model);
