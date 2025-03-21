@@ -136,32 +136,9 @@
     <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
     <script>
 
-        class Record {
-            constructor(parameters) {
-                Object.assign(this, parameters);
-                this.name ??= '';
-                this.ancestors ??= [];
-                this.children ??= [];
-            }
 
-            get type() {
-                return typeof this.value === 'object' && this.value !== null && this.value.constructor.name === 'Array'
-                    ? 'array'
-                    : typeof this.value;
-            }
 
-            get path() {
-                return [...this.ancestors, this]
-                    .map(({ name, ancestors }) => [JSON.stringify(name).slice(1, -1), ancestors])
-                    .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[${name}]` : `${path}/${name}`, '')
-                    .replace(/^\/\//, '/')
             }
-
-            get schemaId() {
-                return [...this.ancestors, this]
-                    .map(({ name, ancestors }) => [JSON.stringify(name).slice(1, -1), ancestors])
-                    .reduce((path, [name, ancestors]) => ancestors.at(-1)?.type === 'array' ? `${path}[]` : `${path}/${name}`, '')
-                    .replace(/^\/\//, '/')
             }
         }
         class Model {
